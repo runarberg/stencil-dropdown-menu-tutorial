@@ -6,19 +6,38 @@
  */
 import { HTMLStencilElement, JSXBase } from "@stencil/core/internal";
 export namespace Components {
+    interface MyButton {
+        "disabled": boolean;
+        "type": "button" | "reset" | "submit";
+        "weight": "slim" | "normal" | "strong";
+    }
 }
 declare global {
+    interface HTMLMyButtonElement extends Components.MyButton, HTMLStencilElement {
+    }
+    var HTMLMyButtonElement: {
+        prototype: HTMLMyButtonElement;
+        new (): HTMLMyButtonElement;
+    };
     interface HTMLElementTagNameMap {
+        "my-button": HTMLMyButtonElement;
     }
 }
 declare namespace LocalJSX {
+    interface MyButton {
+        "disabled"?: boolean;
+        "type"?: "button" | "reset" | "submit";
+        "weight"?: "slim" | "normal" | "strong";
+    }
     interface IntrinsicElements {
+        "my-button": MyButton;
     }
 }
 export { LocalJSX as JSX };
 declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
+            "my-button": LocalJSX.MyButton & JSXBase.HTMLAttributes<HTMLMyButtonElement>;
         }
     }
 }
