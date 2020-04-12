@@ -1,0 +1,3 @@
+my-menu my-menu-item my-button::part(button) {
+  border: none;
+}

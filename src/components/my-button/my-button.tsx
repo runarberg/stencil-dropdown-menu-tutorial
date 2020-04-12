@@ -19,7 +19,12 @@ export class MyButton implements ComponentInterface {
 
     return (
       <Host>
-        <button class={classMap} disabled={this.disabled} type={this.type}>
+        <button
+          class={classMap}
+          type={this.type}
+          disabled={this.disabled}
+          part="button"
+        >
           <slot></slot>
         </button>
       </Host>
