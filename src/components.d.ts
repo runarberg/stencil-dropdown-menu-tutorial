@@ -11,6 +11,9 @@ export namespace Components {
         "type": "button" | "reset" | "submit";
         "weight": "slim" | "normal" | "strong";
     }
+    interface MyDialog {
+        "open": boolean;
+    }
     interface MyMenu {
     }
     interface MyMenuItem {
@@ -22,6 +25,12 @@ declare global {
     var HTMLMyButtonElement: {
         prototype: HTMLMyButtonElement;
         new (): HTMLMyButtonElement;
+    };
+    interface HTMLMyDialogElement extends Components.MyDialog, HTMLStencilElement {
+    }
+    var HTMLMyDialogElement: {
+        prototype: HTMLMyDialogElement;
+        new (): HTMLMyDialogElement;
     };
     interface HTMLMyMenuElement extends Components.MyMenu, HTMLStencilElement {
     }
@@ -37,6 +46,7 @@ declare global {
     };
     interface HTMLElementTagNameMap {
         "my-button": HTMLMyButtonElement;
+        "my-dialog": HTMLMyDialogElement;
         "my-menu": HTMLMyMenuElement;
         "my-menu-item": HTMLMyMenuItemElement;
     }
@@ -47,12 +57,17 @@ declare namespace LocalJSX {
         "type"?: "button" | "reset" | "submit";
         "weight"?: "slim" | "normal" | "strong";
     }
+    interface MyDialog {
+        "onOpenChanged"?: (event: CustomEvent<any>) => void;
+        "open"?: boolean;
+    }
     interface MyMenu {
     }
     interface MyMenuItem {
     }
     interface IntrinsicElements {
         "my-button": MyButton;
+        "my-dialog": MyDialog;
         "my-menu": MyMenu;
         "my-menu-item": MyMenuItem;
     }
@@ -62,6 +77,7 @@ declare module "@stencil/core" {
     export namespace JSX {
         interface IntrinsicElements {
             "my-button": LocalJSX.MyButton & JSXBase.HTMLAttributes<HTMLMyButtonElement>;
+            "my-dialog": LocalJSX.MyDialog & JSXBase.HTMLAttributes<HTMLMyDialogElement>;
             "my-menu": LocalJSX.MyMenu & JSXBase.HTMLAttributes<HTMLMyMenuElement>;
             "my-menu-item": LocalJSX.MyMenuItem & JSXBase.HTMLAttributes<HTMLMyMenuItemElement>;
         }

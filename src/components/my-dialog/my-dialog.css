@@ -1,0 +1,19 @@
+:host {
+  position: relative;
+}
+
+dialog {
+  border: 1px solid thistle;
+  border-radius: 1ex;
+  display: none;
+  inline-size: max-content;
+  inset-block-start: calc(100% + 5px);
+  inset-inline-end: auto;
+  inset-inline-start: 0;
+  padding: 0;
+  position: absolute;
+}
+
+dialog[open] {
+  display: block;
+}
